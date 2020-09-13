@@ -1,0 +1,101 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>My Shopping List</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-table [dataSource]="products" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> <b>Name</b> </mat-header-cell>
+    <mat-cell *matCellDef="let product"> {{ product.name }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="category">
+    <mat-header-cell *matHeaderCellDef> <b>Category</b> </mat-header-cell>
+    <mat-cell *matCellDef="let product"> {{ product.category }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="num">
+    <mat-header-cell *matHeaderCellDef> <b>Number</b> </mat-header-cell>
+    <mat-cell *matCellDef="let product"> {{ product.num }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef> <b>Price</b> </mat-header-cell>
+    <mat-cell *matCellDef="let product"> {{ product.price }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="remove">
+    <mat-header-cell *matHeaderCellDef> <b>Remove</b> </mat-header-cell>
+    <mat-cell *matCellDef="let product; let i = index">
+      <button
+        mat-mini-fab
+        color="primary"
+        aria-label="Example icon button with a delete icon"
+        (click)="removeProduct(product._id)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+
+<form class="example-form" *ngIf="products">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Name</mat-label>
+          <input matInput [(ngModel)]="product.name" name="productname" />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Category</mat-label>
+          <input
+            matInput
+            [(ngModel)]="product.category"
+            name="productcategory"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Number</mat-label>
+          <input
+            type="number"
+            matInput
+            [(ngModel)]="product.num"
+            value="num"
+            name="productnum"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Price</mat-label>
+          <input
+            type="number"
+            matInput
+            [(ngModel)]="product.price"
+            name="productprice"
+          />
+        </mat-form-field>
+      </td>
+
+      <td>
+        <button
+          class="button1"
+          mat-raised-button
+          color="primary"
+          (click)="addProduct()"
+        >
+          Add
+        </button>
+      </td>
+    </tr>
+  </table>
+</form>

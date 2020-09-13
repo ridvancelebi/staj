@@ -1,0 +1,9 @@
+<h3>DETAIL PAGE</h3>
+
+<div class="card" *ngFor="let product of products">
+  <h1>{{ product.brand }}</h1>
+  <h2>{{ product.model }}</h2>
+  <p class="price">{{ product.price }}</p>
+  <p>{{ product.description }}</p>
+  <button (click)="addToCart(product)">Add to Card</button>
+</div>

@@ -1,0 +1,7 @@
+<div class="card" *ngFor="let product of products">
+  <h1>{{product.brand}}</h1>
+  <h2>{{product.model}}</h2>
+  <p class="price">{{product.price}}</p>
+
+  <a [routerLink]="['/detail', product.id]"><button>Detail</button></a>
+</div>
